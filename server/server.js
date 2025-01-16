@@ -7,8 +7,6 @@ const app = express();
 
 app.use(express.json()); // Parse JSON request bodies
 
-require("dotenv").config();
-
 app.use(cors());
 
 app.post("/send-email", async (req, res) => {

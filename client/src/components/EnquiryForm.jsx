@@ -37,12 +37,17 @@ const EnquiryForm = () => {
                 .post("http://localhost:4000/send-email", formData)
                 .then((res) => {
                     console.log(res);
+                    setFormData({
+                        subject: "",
+                        email: "",
+                        message: "",
+                    });
+                    toast.success("Message send successfully!", { id: toastId });
                 })
                 .catch((err) => {
                     console.log(err);
                 });
             setErrors({});
-            toast.success("Message send successfully!", { id: toastId });
         } else {
             toast.dismiss();
             setErrors(errors);
@@ -107,21 +112,6 @@ const EnquiryForm = () => {
                     Submit
                 </button>
             </form>
-
-            {submittedData && (
-                <div className="mt-5">
-                    <h3>Submitted Details</h3>
-                    <p>
-                        <strong>Name:</strong> {submittedData.subject}
-                    </p>
-                    <p>
-                        <strong>Email:</strong> {submittedData.email}
-                    </p>
-                    <p>
-                        <strong>Message:</strong> {submittedData.message}
-                    </p>
-                </div>
-            )}
         </div>
     );
 };
